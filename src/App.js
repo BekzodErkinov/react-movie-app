@@ -1,26 +1,33 @@
-import { useState, useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route } from 'react-router-dom'
+
 // Pages
-import Home from './page/Home/Home'
-import Movies from './page/Movies/Movies'
-import Populars from './page/Populars/Populars'
-import SingleMovie from './page/SingleMovie/SingleMovie'
+import {
+  Home,
+  Movies,
+  TVShows,
+  Popular,
+  Upcoming,
+  SingleMovie,
+} from './pages'
+// Containers
+import Header from './containers/Header/Header'
 
-import Header from './container/Header/Header'
-
-function App() {  
+function App() {
   return (
     <Router>
       <Header />
 
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/movies" component={Movies} />
-        <Route path="/populars" component={Populars} />
-        <Route path="/movie/:id" component={SingleMovie} /> 
+        <Route exact path="/movies" component={Movies} />
+        <Route exact path="/tv-shows" component={TVShows} />
+        <Route exact path="/popular" component={Popular} />
+        <Route exact path="/upcoming" component={Upcoming} />
+        {/* <Route exact path="/actor/:actor_id" component={ActorMovies} /> */}
+        <Route exact path="/movie/:movie_id" component={SingleMovie} />
       </Switch>
     </Router>
   )

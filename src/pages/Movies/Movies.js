@@ -1,3 +1,5 @@
+import './Movies.scss'
+
 const Movies = () => {
   return (
     <div>

@@ -1,0 +1,85 @@
+.site-header {
+  // min-height: 100vh;
+  // background: url('../../assets/images/bg-shaft.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: center;
+
+  .site-nav {
+    background: rgba(0,0,0,0.5);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.7);
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 20px;
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        .nav-link{
+          color: #eee;
+          transition: all 0.2s ease;
+          &:hover{
+            color: #ffe600
+          }
+        }
+        .search-btn {
+          margin-right: 15px;
+        }
+        .signup-modal-btn {
+          border: none;
+          outline: none;
+          padding: 10px 20px;
+          background: #ffff4d;
+          border-radius: 6px;
+          transition: all 0.2s ease;
+          &:hover {
+            background: #cece36;
+          }
+        }
+      }
+    }
+  }
+  // Search Bar
+  .search-bar {
+    display: none;// vaqtincha
+    .search-wrapper {// span
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      input {
+        display: block;
+        width: 95%;
+        padding: 10px 67px 10px 13px;
+        border: none;
+        outline: none;
+      }
+      .search-clear-btn,
+      .loading-icon {
+        position: absolute;
+      }
+      .search-clear-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 17px;
+        height: 17px;
+        top: 9px;
+        right: 3.3%;
+        overflow: hidden;
+        // outline: 1px solid red;
+      }
+      .loading-icon {
+        // display: none;
+        width: 25px;
+        height: 25px;
+        top: 14%;
+        right: 5.2%;
+        object-fit: cover;
+      }
+    }
+  }
+}

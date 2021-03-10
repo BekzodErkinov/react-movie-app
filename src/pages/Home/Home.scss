@@ -1,0 +1,22 @@
+.top-rated-movie-holder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 50px;
+
+  // -------------------
+  .movie-card {
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(6),
+    &:nth-child(19) {
+      // outline: 1px solid red;
+      .movie-img {
+        opacity: 0;
+      }
+    }
+  }
+  // --------------------
+}

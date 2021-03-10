@@ -12,9 +12,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #eee;
+  background: #16151A;
 }
 
 .container {
+  width: 100%;
   max-width: 1200px;
   padding: 0 25px;
   margin: 0 auto;
@@ -23,11 +26,13 @@ body {
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   padding: 0;
+  letter-spacing: 0.3px;
 }
 
 img {
   display: block;
   object-fit: contain;
+  font-family: sans-serif;
 }
 
 a {
@@ -44,10 +49,22 @@ button {
   border: none;
   outline: none;
   cursor: pointer;
+  letter-spacing: 0.3px;
   background: transparent;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+// Loading Animation
+.loading {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+
+  .loader {
+    svg path,
+    svg rect{
+      fill: #FF6700;
+    }
+  }
 }

@@ -1,0 +1,17 @@
+.movies-holder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 50px;
+
+  // -------------------
+  .movie-card {
+    &:nth-child(4) {
+      .movie-img {
+        opacity: 0;
+      }
+    }
+  }
+  // --------------------
+}

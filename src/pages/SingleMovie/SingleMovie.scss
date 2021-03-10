@@ -1,0 +1,122 @@
+.movie-info-card {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  margin-top: 5px;
+  color: #eee;
+  background: #222229;
+
+  .movie-backdrop {// bg-img
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    filter: brightness(0.5) blur(7px);
+    background: #222229;
+  }
+  .movie-info-wrap {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    border-radius: 8px;
+    z-index: 1;
+
+    .movie-poster {
+      height: 100%;
+      width: 500px;
+      z-index: 1;
+      border-radius: 5px;
+      box-shadow: 0 0 20px 7px rgba(0, 0, 0, 0.5);
+    }
+    .movie-info {
+      padding: 20px 50px;
+      margin-left: -8px;
+      backdrop-filter: blur(18px);
+      background: rgba(0,0,0,0.5);
+      box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.5);
+      border-radius: 6px;
+
+      // .movie-title,
+      .movie-original-title,
+      .movie-tagline,
+      .movie-overview,
+      .movie-budget,
+      .movie-release-date,
+      .movie-runtime,
+      .site-link,
+      .movie-genres {
+        margin-top: 25px;
+      }
+
+      .summary {
+        line-height: 1.4;
+        letter-spacing: 0.4px;
+        margin-top: 10px;
+      }
+      .site-link {
+        display: inline-flex;
+        color: rgb(64, 124, 255);
+        transition: all 0.3s ease;
+        &:hover {
+          color: rgb(20, 94, 255);
+        }
+        img {
+        margin-left: 6px;
+        }
+      }
+      .movie-budget,
+      .movie-release-date,
+      .movie-runtime {
+        span {
+          font-weight: normal;
+          margin-left: 8px;
+        }
+      }
+
+      .movie-genres {
+        margin-top: 40px;
+        b {
+          margin-right: 7px;
+        }
+        .movie-genre-btn {
+          color: #eee;
+          font-size: 17px;
+          transition: all 0.2s ease;
+          &:hover {
+            color: #aaa;
+          }
+        }
+      }
+    }
+  }
+  // ACTORS LIST
+  .actors-wrap {
+    margin-top: 100px;
+    z-index: 1;
+
+    .actors-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      .actors-item {
+        margin-top: 20px;
+      }
+    }
+  }
+  // RECOMMENDATIONS LIST
+  .recommendations-wrap {
+    margin-top: 50px;
+    .rec-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
+      margin-top: 50px;
+    }
+  }
+}
