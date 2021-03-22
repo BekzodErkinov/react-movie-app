@@ -43,8 +43,8 @@
   }
   // Search Bar
   .search-bar {
-    display: none;// vaqtincha
-    .search-wrapper {// span
+    display: none;
+    .search-wrapper {
       position: relative;
       display: flex;
       align-items: center;
@@ -70,16 +70,21 @@
         top: 9px;
         right: 3.3%;
         overflow: hidden;
-        // outline: 1px solid red;
       }
       .loading-icon {
-        // display: none;
+        display: none;
         width: 25px;
         height: 25px;
         top: 14%;
         right: 5.2%;
         object-fit: cover;
       }
+      .loading-icon.show {
+        display: block;
+      }
     }
+  }
+  .search-bar.show {
+    display: block;
   }
 }

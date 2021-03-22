@@ -1,13 +1,39 @@
+import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 // SVG Icons
 // import { cineramaLogo } from '../../assets/Icons/Icons'
 // Animation
-import loadingGIF from '../../assets/images/gif/loading.gif'
+import loadingGIF from '../../assets/gif/loading.gif'
 // SCSS
 import './Header.scss'
 
 const Header = () => {
+  // Class Toggler
+  // Show/Hide Search Input
+  const [isActive, setActive] = useState(false)
+  function handleToggle() {
+    setActive(!isActive)
+  }
+  // Show/Hide Loading GIF
+  const [isActiveLoading, setActiveLoading] = useState(false)
+  function handleToggleLoading() {
+    setActiveLoading(true)
+    setTimeout(() => setActiveLoading(false) ,2000)
+  }
+
+  // Search🔍
+  const history = useHistory()
+  const [searchText, setSearchText] = useState('')
+
+  useEffect(() => {
+    if (searchText.length > 0)
+      history.push(`/search/${searchText}`)
+    else
+      history.push(`/`)
+  }, [searchText])
+
   return (
     <header className="site-header">
       <nav className="site-nav">
@@ -37,23 +63,39 @@ const Header = () => {
             {/* <li className="nav-item"><Link to="/people" className="nav-link">People</Link></li> */}
             <li className="nav-item"><Link to="/popular" className="nav-link">Popular</Link></li>
             <li className="nav-item">
-              <button className="search-btn" id="search-movie"><img src="https://img.icons8.com/ios/40/ffffff/search--v1.png" alt="Search Icon"/></button>
+              <button
+                className="search-btn"
+                id="search-movie"
+                onClick={handleToggle}
+              >
+                <img src="https://img.icons8.com/ios/40/ffffff/search--v1.png" alt="Search Icon" />
+              </button>
               <button className="signup-modal-btn">Signup</button>
             </li>
           </ul>
         </div>
       </nav>
       {/* Search Bar */}
-      <div className="search-bar" id="search-bar">
+      <div className={`search-bar ${isActive ? 'show' : ''}`} id="search-bar">
         <div className="container">
           <form id="search_form" action="/search" acceptCharset="UTF-8">
             <label>
               <span className="search-wrapper">
-                <input type="text" name="search_movie" placeholder="Search..." required />
-                <button className="search-clear-btn remove-bobg" type="button">
+                <input
+                  type="text"
+                  name="search_movie"
+                  placeholder="Search..."
+                  onChange={e => {
+                    setSearchText(e.target.value)
+                    handleToggleLoading()
+                  }}
+                  value={searchText}
+                  required
+                />
+                <button className="search-clear-btn" type="button">
                   <img src="https://img.icons8.com/ios/35/000000/delete-sign--v3.png" alt="Delete sign" />
                 </button>
-                <img className="loading-icon" src={loadingGIF} alt="Loading gif" />
+                <img className={`loading-icon ${isActiveLoading ? 'show' : ''}`} src={loadingGIF} alt="Loading gif" />
               </span>
             </label>
           </form>

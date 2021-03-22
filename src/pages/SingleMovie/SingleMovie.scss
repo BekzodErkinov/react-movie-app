@@ -99,11 +99,9 @@
     z-index: 1;
 
     .actors-list {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
+      margin: 30px auto;
       .actors-item {
+        width: 150px;
         margin-top: 20px;
       }
     }

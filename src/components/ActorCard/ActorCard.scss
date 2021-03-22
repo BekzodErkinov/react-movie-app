@@ -1,8 +1,7 @@
-.artist-card {
-  width: 130px;
+.actor-card {
+  width: 140px;
   min-height: 250px;
   margin: 12px;
-  overflow: hidden;
   border-radius: 6px;
   backdrop-filter: blur(10px);
   background: rgba(0, 0, 0, 0.527);
@@ -17,8 +16,11 @@
     height: 180px;
     color: #eee;
     object-fit: cover;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
   }
   .actor-name-wrap {
+    width: 140px;
     color: #eee;
     display: block;
     padding: 10px;

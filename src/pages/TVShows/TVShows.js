@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
+// Library
 import axios from 'axios'
 
+// Data
+import notToShow from '../../assets/data/NotToShow'
 // Components
 import MovieCard from '../../components/MovieCard/MovieCard'
 // Animation
@@ -39,26 +42,30 @@ const TVShows = () => {
       })
   }, [])
 
-  console.log(tvShows);
-
   return (
-    <div>
-      {tvShows.isFetched ? (
-        <div className="tvshows-holder">
-          {tvShows.data.map((movie, index) => (
-            <MovieCard
-              movie_id={movie.id}
-              title={movie.name}
-              imgLink={movie.poster_path}
-              rating={movie.vote_average}
-              releaseDate={movie.first_air_date}
-              key={index}
-            />
-          ))}
-        </div>
-      ) : (
-        <div className="loading">{Loader}</div>
-      )}
+    <div className="tvshows-holder">
+      <div className="container">
+        {tvShows.isFetched ? (
+          <div className="tvshows-wrap">
+            {tvShows.data.map(movie => (
+              !notToShow.includes(movie.id) ? (
+                <MovieCard
+                  movie_id={movie.id}
+                  title={movie.name}
+                  imgLink={movie.poster_path}
+                  rating={movie.vote_average}
+                  releaseDate={movie.first_air_date}
+                  key={movie.id}
+                />
+              ) : (null)
+            ))}
+          </div>
+        ) : (
+          <div className="loading">
+            <Loader />
+          </div>
+        )}
+      </div>
     </div>
   )
 }

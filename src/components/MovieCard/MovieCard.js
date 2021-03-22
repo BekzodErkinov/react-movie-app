@@ -7,14 +7,16 @@ const MovieCard = (props) => {
   const { movie_id, title, imgLink, rating, releaseDate } = props
 
   return (
-    <Link to={`/movie/${movie_id}`} className="movie-card">
+    <div className="movie-card">
+      <Link  to={`/movie/${movie_id}`} className="img-wrap" title={title}>
+        <img src={`https://image.tmdb.org/t/p/w500/${imgLink}`} alt={title} className="movie-img" />
+      </Link>
       <span className="movie-rating">{rating}</span>
-      <img src={`https://image.tmdb.org/t/p/w500/${imgLink}`} alt={title} className="movie-img" />
       <div className="movie-lead">
-        <h2 className="movie-title">{title}</h2>
+        <Link to={`/movie/${movie_id}`} className="movie-title" title={title}>{title}</Link>
         <h5 className="release-date">{releaseDate}</h5>
       </div>
-    </Link>
+    </div>
   )
 }
 

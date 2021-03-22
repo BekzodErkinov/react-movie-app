@@ -3,8 +3,10 @@ import Movies from './Movies/Movies'
 import TVShows from './TVShows/TVShows'
 import Popular from './Popular/Popular'
 import Upcoming from './Upcoming/Upcoming'
-import ActorCard from '../components/ActorCard/ActorCard'
+import SearchPage from './SearchPage/SearchPage'
 import SingleMovie from './SingleMovie/SingleMovie'
+import ActorMovies from './ActorMovies/ActorMovies'
+import ActorCard from '../components/ActorCard/ActorCard'
 
 export {
   Home,
@@ -13,5 +15,7 @@ export {
   Popular,
   Upcoming,
   ActorCard,
-  SingleMovie
+  SearchPage,
+  ActorMovies,
+  SingleMovie,
 }

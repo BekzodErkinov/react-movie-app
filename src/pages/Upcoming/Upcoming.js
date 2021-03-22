@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+// Library
 import axios from 'axios'
 
 // Components
@@ -41,23 +42,27 @@ const Upcoming = () => {
   }, [])
 
   return (
-    <div>
-      {upcomingMovies.isFetched ? (
-        <div className="upcoming-movies-holder">
-          {upcomingMovies.data.map((movie, index) => (
-            <MovieCard
-              title={movie.title}
-              movie_id={movie.id}
-              imgLink={movie.poster_path}
-              rating={movie.vote_average}
-              releaseDate={movie.release_date}
-              key={index}
-            />
-          ))}
-        </div>
-      ) : (
-        <div className="loding">{Loader}</div>
-      )}
+    <div className="upcoming-movies-holder">
+      <div className="container">
+        {upcomingMovies.isFetched ? (
+          <div className="upcoming-movies-wrap">
+            {upcomingMovies.data.map(movie => (
+              <MovieCard
+                title={movie.title}
+                movie_id={movie.id}
+                imgLink={movie.poster_path}
+                rating={movie.vote_average}
+                releaseDate={movie.release_date}
+                key={movie.id}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="loading">
+            <Loader/>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

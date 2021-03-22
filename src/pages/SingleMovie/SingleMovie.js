@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react'
+// Library
 import axios from 'axios'
+// Slick Carousel
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
+// Data
+import notToShow from '../../assets/data/NotToShow'
 // Components
 import ActorCard from '../../components/ActorCard/ActorCard'
 import MovieCard from '../../components/MovieCard/MovieCard'
 // import Recommendation from '../../components/Recommendation/Recommendation'
-
 // Animation
 import Loader from '../../components/Animation/Loader'
 
@@ -13,20 +19,47 @@ import Loader from '../../components/Animation/Loader'
 import './SingleMovie.scss'
 
 const SingleMovie = ({ match }) => {
-  const url_tmdb = `https://api.themoviedb.org/3/movie/${match.params.movie_id}`
-  // MOVIE LIST
+  // SLICK CAROUSEL SETTINGS
+  // Actor Settings
+  const actorSettings = {
+    dots: false,
+    speed: 1000,
+    autoplay: true,
+    infinite: true,
+    slidesToShow: 7,
+    slidesToScroll: 4,
+    pauseOnFocus: true,
+    autoplaySpeed: 3000,
+    adaptiveHeight: true,
+  }
+  // Recommendation Movie Settings
+  const recSettings = {
+    dots: false,
+    speed: 1500,
+    autoplay: true,
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 4,
+    pauseOnFocus: true,
+    autoplaySpeed: 3000,
+    adaptiveHeight: true,
+  }
+
+  // URL
+  const url_tmdb = `https://api.themoviedb.org/3/`
+  // Movie List
   const [movieInfo, setMovieInfo] = useState({
     isFetched: false,
     data: [],
     error: null,
   })
-  // ACTORS LIST
+  // Actors List
   const [actorsList, setActorsList] = useState({
     isFetched: false,
     data: [],
     error: null,
   })
-  // RECOMMENDATIONS LIST
+  // Recommendations List
   const [recommendation, setRecommendation] = useState({
     isFetched: false,
     data: [],
@@ -36,7 +69,7 @@ const SingleMovie = ({ match }) => {
   useEffect(() => {
     // MOVIE LIST
     axios
-      .get(url_tmdb, {
+      .get(`${url_tmdb}movie/${match.params.movie_id}`, {
         params: {
           api_key: "408c4caa837834514ec8de6e5f7b12df",
         },
@@ -57,7 +90,7 @@ const SingleMovie = ({ match }) => {
       })
       // ACTORS LIST
       axios
-      .get(`${url_tmdb}/credits`, {
+      .get(`${url_tmdb}movie/${match.params.movie_id}/credits`, {
         params: {
           api_key: "408c4caa837834514ec8de6e5f7b12df",
         },
@@ -78,7 +111,7 @@ const SingleMovie = ({ match }) => {
       })
       // RECOMMENDATIONS LIST
       axios
-      .get(`https://api.themoviedb.org/3/movie/${match.params.movie_id}/recommendations?`, {
+      .get(`${url_tmdb}movie/${match.params.movie_id}/recommendations`, {
         params: {
           api_key: "408c4caa837834514ec8de6e5f7b12df",
         },
@@ -99,7 +132,7 @@ const SingleMovie = ({ match }) => {
       })
   }, [])
 
-  // Numbers Formatter - xx xxx xxx
+  // Numbers Formatter - xx xxx xxx - 50 000 000
   function formatNums(nums) {
     let numArr = [...`${nums}`].reverse()
     for (let i = 0; i < numArr.length; i+=4)
@@ -156,21 +189,21 @@ const SingleMovie = ({ match }) => {
             <div className="actors-wrap">
               <h2>Actors</h2>
               {actorsList.isFetched ? (
-                <ul className="actors-list">
-                  {
-                    actorData.map((actor, index) => (
+                <Slider {...actorSettings} className="actors-list">
+                  {actorData.map(actor => (
                       <ActorCard
                         id={actor.id}
                         name={actor.name}
                         charName={actor.character}
                         imgLink={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-                        key={index}
+                        key={actor.id}
                       />
-                    ))
-                  }
-                </ul>
+                    ))}
+                </Slider>
               ) : (
-                <div className="loading">{Loader}</div>
+                <div className="loading">
+                  <Loader />
+                </div>
               )}
             </div>
 
@@ -178,26 +211,32 @@ const SingleMovie = ({ match }) => {
             <div className="recommendations-wrap">
               <h2>Recommendations</h2>
               {recommendation.isFetched ? (
-                <ul className="rec-list">
-                  {recData.map((movie, index) => (
-                    <MovieCard
-                      title={movie.title}
-                      movie_id={movie.id}
-                      imgLink={movie.poster_path}
-                      rating={movie.vote_average}
-                      releaseDate={movie.release_date}
-                      key={index}
-                    />
+                <Slider {...recSettings} className="rec-list">
+                  {recData.map(movie => (
+                    !notToShow.includes(movie.id) ? (
+                      <MovieCard
+                        title={movie.title}
+                        movie_id={movie.id}
+                        imgLink={movie.poster_path}
+                        rating={movie.vote_average}
+                        releaseDate={movie.release_date}
+                        key={movie.id}
+                      />
+                    ) : (null)
                   ))}
-                </ul>
-              ): (
-                <div className="loading">{Loader}</div>
+                </Slider>
+              ) : (
+                <div className="loading">
+                  <Loader />
+                </div>
               )}
             </div>
           </div>
         </div>
       ) : (
-        <div className="loading">{Loader}</div>
+        <div className="loading">
+          <Loader />
+        </div>
       )}
     </>
   )

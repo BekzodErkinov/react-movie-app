@@ -4,54 +4,53 @@ import axios from 'axios'
 
 // Data
 import notToShow from '../../assets/data/NotToShow'
-// Component
+// Components
 import MovieCard from '../../components/MovieCard/MovieCard'
-// Animation
 import Loader from '../../components/Animation/Loader'
 
 // SCSS
-import './Home.scss'
+import './SearchPage.scss'
 
-const Home = () => {
-  const [topRatedMovies, setTopRatedMovies] = useState({
+const SearchPage = ({ match }) => {
+  const [moviesList, setMoviesList] = useState({
     isFetched: false,
     data: [],
     error: null,
   })
 
-  // Getting Top Rated movies
   useEffect(() => {
     axios
-      .get("https://api.themoviedb.org/3/movie/top_rated?", {
+      .get(`https://api.themoviedb.org/3/search/movie`, {
         params: {
           api_key: "408c4caa837834514ec8de6e5f7b12df",
+          query: match.params.searchText,
         },
       })
       .then((res) => {
-        setTopRatedMovies({
+        setMoviesList({
           isFetched: true,
           data: res.data.results,
           error: false,
         })
       })
       .catch((err) => {
-        setTopRatedMovies({
+        setMoviesList({
           isFetched: true,
           data: [],
           error: err,
         })
       })
-  }, [])
+  }, [match.params.searchText])
 
-  // console.log(topRatedMovies)
+  // console.log(moviesList)
 
   return (
-    <div className="top-rated-movie-holder">
+    <div className="now-playing-movies-holder">
       <div className="container">
-        <h1 className="top-rated-title">Top Rated Movies</h1>
-        {topRatedMovies.isFetched ? (
-          <div className="top-rated-wrap">
-            {topRatedMovies.data.map(movie => (
+        <h1 className="now-playing-title">Top Rated Movies</h1>
+        {moviesList.isFetched ? (
+          <div className="now-playing-wrap">
+            {moviesList.data.map(movie => (
               !notToShow.includes(movie.id) ? (
                 <MovieCard
                   movie_id={movie.id}
@@ -74,4 +73,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default SearchPage
