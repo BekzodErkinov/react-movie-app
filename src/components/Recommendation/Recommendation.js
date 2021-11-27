@@ -39,7 +39,6 @@ const Recommendation = ({ match }) => {
   return (
     <div>
       <h2>Recommendation</h2>
-
     </div>
   )
 }

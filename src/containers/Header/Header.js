@@ -34,6 +34,7 @@ const Header = () => {
       history.push(`/`)
   }, [searchText])
 
+
   return (
     <header className="site-header">
       <nav className="site-nav">

@@ -1,7 +1,8 @@
 import {
   BrowserRouter as Router,
   Switch,
-  Route } from 'react-router-dom'
+  Route
+} from 'react-router-dom'
 
 // Pages
 import {

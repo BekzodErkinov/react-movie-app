@@ -1,9 +1,11 @@
 .popular-movies-holder {
   .popular-movies-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: center;
-    margin-top: 50px;
+    .movies-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
+      margin-top: 50px;
+    }
   }
 }
